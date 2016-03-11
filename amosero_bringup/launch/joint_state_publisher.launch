@@ -1,0 +1,5 @@
+<!-- joint state publisher, not used in production, but joints can be influenced by publisher gui when 
+activated by parameter -->
+<launch>
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+</launch>

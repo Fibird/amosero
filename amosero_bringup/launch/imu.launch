@@ -1,0 +1,6 @@
+<!-- starts imu, is used by odometry.launch -->
+<launch>
+    <group>
+      <node name="node" pkg="lsm9ds0_imu_9dof" type="node_new.py"> </node>
+    </group>
+ </launch>

@@ -1,0 +1,29 @@
+<!-- 
+this file launches the gps chip placed on /dev/ttyUSB0 as /vo topic of the current namespace 
+by that robot_pose_ekf is able to determine the position of the robot as additional source to imu and odomoetry
+@param port the device path to be used, defaults to /dev/ttyUSB0
+-->
+<launch>
+    <group>
+    	
+	    <node pkg="nmea_navsat_driver" type="nmea_serial_driver" name="navsat" respawn="true">
+	       <param name="port" value="/dev/ttyUSB0"/>
+	       <param name="baud" value="9600"/>
+	    </node>		
+
+	    <node pkg="gps_common" type="utm_odometry_node" name="gps_utm" respawn="true">
+	       <remap from="odom" to="vo"/>
+	       <param name="frame_id" value="utm"/>
+	    </node>
+
+
+    	<node name="gps_conv" pkg="gps_common" type="utm_odometry_node">
+		  <remap from="odom" to="vo"/>
+		  <remap from="vo" to="gps_meas" />
+		  <remap from="fix" to="/gps/fix" />
+		  <param name="rot_covariance" value="99999" />
+		  <param name="frame_id" value="base_footprint" />
+		</node>
+
+	</group>
+ </launch>

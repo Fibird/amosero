@@ -1,0 +1,16 @@
+<!-- starts odometry sensors all by one, initializing publishers as well -->
+<launch>
+    <group>
+
+        <arg name="gui" default="False" />
+        <arg name="model" default="$(find amosero_description)/robots/amosero.urdf.xacro" />
+        <param  command="$(find xacro)/xacro.py $(arg model)" name="robot_description" />
+
+        <include file="$(find amosero_bringup)/launch/imu.launch" />
+        <include file="$(find amosero_bringup)/launch/gps.launch" />
+        <include file="$(find amosero_bringup)/launch/robot_pose_ekf.launch" />
+        <include file="$(find amosero_bringup)/launch/robot_state_publisher.launch" />
+        <include file="$(find amosero_bringup)/launch/joint_state_publisher.launch" />
+       
+    </group>
+</launch>

@@ -1,0 +1,1 @@
+roslaunch amosero_description xacrodisplay.launch model:=/home/cronk/catkin_ws/src/amosero_description/robots/amosero.urdf.xacro

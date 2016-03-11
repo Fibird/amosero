@@ -1,0 +1,17 @@
+<!--
+  Standalone launcher used for visualising urdf models.
+ -->
+
+<launch>
+   <arg name="model" default="$(find amosero_description)/robots/amosero.urdf.xacro" />
+  <param  command="$(find xacro)/xacro.py $(arg model)" name="robot_description" />
+  <param name="use_gui" value="False"/>
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
+  
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+    <param name="use_gui" value="true"/>
+  </node>
+  
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find amosero_navigation)/rviz/model.rviz" />
+</launch>

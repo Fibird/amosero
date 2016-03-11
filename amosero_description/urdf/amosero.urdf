@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+  <robot name="amosero" xmlns:xacro="http://ros.org/wiki/xacro">
+
+    <xacro:include filename="$(find amosero_description)/urdf/amosero_library.urdf.xacro" />
+
+    <sensor_asus_xtion_pro  parent="base_link"/>
+
+    <link name="base_link">
+      <visual>
+        <geometry>
+          <box size="0.2 .3 .1"/>
+        </geometry>
+        <origin rpy="0 0 0" xyz="0 0 0.05"/>
+        <material name="blue">
+            <color rgba="0 0 .8 1"/>
+        </material>
+      </visual>
+      <collision>
+        <geometry>
+           <box size="0.25 .35 .15"/>
+        </geometry>
+       </collision>
+    </link>
+
+
+    <link name="xtion">
+      <visual>
+        <geometry>
+          <box size="0.2 .05 .1"/>
+        </geometry>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <material name="black">
+          <color rgba="0 0 0 1"/>
+        </material>
+      </visual>
+    </link>
+
+    <joint name="base_to_xtion" type="fixed">
+       <parent link="base_link"/>
+       <child link="xtion"/>
+       <!-- <origin xyz="0 0.1 0"/> -->
+       <origin xyz="0 0.1 0.15"/>
+    </joint>
+
+    <link name="wheel_1">
+      <visual>
+        <geometry>
+          <cylinder length="0.05" radius="0.05"/>
+        </geometry>
+        <!--<origin rpy="0 1.5 0" xyz="0.1 0.1 0"/>-->
+        <origin rpy="0 1.5 0" xyz="0 0 0"/>
+          <material name="black">
+            <color rgba="0 0 0 1"/>
+          </material>
+      </visual>
+    </link>
+
+    <link name="wheel_2">
+      <visual>
+        <geometry>
+          <cylinder length="0.05" radius="0.05"/>
+        </geometry>
+        <!-- <origin rpy="0 1.5 0" xyz="-0.1 0.1 0"/> -->
+        <origin rpy="0 1.5 0" xyz="0 0 0"/>
+        <material name="black"/>
+      </visual>
+    </link>
+
+    <link name="wheel_3">
+      <visual>
+        <geometry>
+          <cylinder length="0.05" radius="0.05"/>
+        </geometry>
+        <!--  <origin rpy="0 1.5 0" xyz="0.1 -0.1 0"/> -->
+        <origin rpy="0 1.5 0" xyz="0 0 0"/>
+        <material name="black"/>
+      </visual>
+    </link>
+
+    <link name="wheel_4">
+      <visual>
+        <geometry>
+          <cylinder length="0.05" radius="0.05"/>
+        </geometry>
+        <!--   <origin rpy="0 1.5 0" xyz="-0.1 -0.1 0"/> -->
+        <origin rpy="0 1.5 0" xyz="0 0 0"/>
+        <material name="black"/>
+      </visual>
+    </link>
+
+    <joint name="base_to_wheel1" type="continuous">
+      <axis xyz="1 0 0"/>
+      <parent link="base_link"/>
+      <child link="wheel_1"/>
+      <origin xyz="0.1 0.1 0"/>
+      <limit effort="100" velocity="100"/>
+      <joint_properties damping="0.0" friction="0.0"/>
+    </joint>
+
+    <joint name="base_to_wheel2" type="continuous">
+      <axis xyz="1 0 0"/>
+      <parent link="base_link"/>
+      <child link="wheel_2"/>
+      <origin xyz="-0.1 0.1 0"/>
+      <limit effort="100" velocity="100"/>
+      <joint_properties damping="0.0" friction="0.0"/>
+    </joint>
+
+    <joint name="base_to_wheel3" type="fixed">
+      <parent link="base_link"/>
+      <child link="wheel_3"/>
+      <origin xyz="0.1 -0.1 0"/>
+    </joint>
+
+    <joint name="base_to_wheel4" type="fixed">
+      <parent link="base_link"/>
+      <child link="wheel_4"/>
+      <origin xyz="-0.1 -0.1 0"/>
+    </joint>
+
+  </robot>

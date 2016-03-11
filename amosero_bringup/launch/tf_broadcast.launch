@@ -1,0 +1,4 @@
+<!-- amosero TF Broadcaster and Motor ssignal generator main unit -->
+<launch>
+    <node name="node" pkg="amosero_bringup" type="tf_broadcast_transform.py"> </node>
+</launch>

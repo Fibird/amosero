@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!--
+  The complete amosero library of xacros for easy reference
+ -->
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <!-- General -->
+  <xacro:include filename="$(find amosero_description)/urdf/common_properties.urdf.xacro"/>
+  <xacro:include filename="$(find amosero_description)/urdf/amosero_properties.urdf.xacro"/>
+  <!-- 3D Sensors -->
+  <xacro:include filename="$(find amosero_description)/urdf/sensors/kinect.urdf.xacro"/>
+  <xacro:include filename="$(find amosero_description)/urdf/sensors/asus_xtion_pro.urdf.xacro"/>
+</robot>

@@ -1,0 +1,46 @@
+<!--
+  Standalone launcher used for visualising urdf models.
+  
+  == Testing Model Views ==
+
+  Test the robot descriptions via the amosero_viz/amosero_navigation
+  and reconfiguring your environment variables.
+
+  == amosero 2 ==
+
+  This is the default, so you don't need to set the variables, but for 
+  purposes of illustration, it is shown below.
+
+  > export amosero_BASE=kobuki
+  > export amosero_STACKS=hexagons
+  > export amosero_3D_SENSOR=kinect
+  > roslaunch amosero_navigation view_model.launch
+
+  == amosero 1 ==
+
+  > export amosero_BASE=create
+  > export amosero_STACKS=circles
+  > export amosero_3D_SENSOR=kinect
+  > roslaunch amosero_navigation view_model.launch
+
+  == Switch 3d Sensor ==
+
+  Switch the 3d sensor from the kinect to the asus xtion pro:
+
+  > export amosero_3D_SENSOR=asus_xtion_pro
+  > roslaunch amosero_navigation view_model.launch
+ -->
+
+<launch>
+   <arg name="model" default="$(find amosero_description)/robots/amosero.urdf.xacro" />
+  <param  command="$(find xacro)/xacro.py $(arg model)" name="robot_description" />
+  <param name="use_gui" value="False"/>
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
+  
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+    <param name="use_gui" value="true"/>
+  </node>
+  
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find amosero_navigation)/rviz/model.rviz" />
+</launch>

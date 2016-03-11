@@ -1,0 +1,5 @@
+<launch>
+  <!-- amosero_teleop_key already has its own built in velocity smoother -->
+  <node pkg="amosero_teleop" type="teleop_keyboard" name="teleop_keyboard.py"  output="screen">  </node>
+
+</launch>
